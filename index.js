@@ -1,3 +1,5 @@
+const { DollarRecognizer } = require('./src/dollar')
+
 function createDollar (withDefaults = true) {
   console.log('createDollar')
 }
@@ -10,8 +12,14 @@ function createDollar (withDefaults = true) {
 //   console.log('createPDollar')
 // }
 
+/**
+ *
+ * @param {Array} points
+ * @param {boolean} useProtractor
+ */
 function dollarRecognize (points, useProtractor = false) {
-  console.log('dollarRecognize')
+  const dr = new DollarRecognizer()
+  return dr.recognize(points)
 }
 
 // function nDollarRecognize () {
