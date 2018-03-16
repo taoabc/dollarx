@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/taoabc/dollarx#readme",
   "devDependencies": {
-    "standard": "^11.0.0"
+    "standard": "^11.0.1"
   }
 }
