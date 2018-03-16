@@ -1,17 +1,22 @@
 # dollarx
 
+[简体中文](README-CHS.md)
+
 [![Build Status](https://travis-ci.org/taoabc/dollarx.svg?branch=master)](https://travis-ci.org/taoabc/dollarx)
 
-Npm port for dollar gesture 1, N and P, Offical site: [http://depts.washington.edu/madlab/proj/dollar/index.html](http://depts.washington.edu/madlab/proj/dollar/index.html)
+Npm port for dollar gesture 1, N and P
 
-## attention
+Offical site: [http://depts.washington.edu/madlab/proj/dollar/index.html](http://depts.washington.edu/madlab/proj/dollar/index.html)
+
+## Attention
+
 1. Only support dollar 1 yet.
 
-## install
+## Install
 
 `npm install dollarx`
 
-## usage
+## Usage
 
 ### 1. Recognize with builtIn gestures
 
@@ -35,22 +40,28 @@ dollar.deleteUserGestures() // Remove all user gestures
 
 ## API
 
-### createDollar
+### 1. createDollar
 
 Create dollar 1 recognizer
 
-#### recoginize
+#### 1.1 recoginize
 
-#### addGesture
+#### 1.2 addGesture
 
-#### deleteUserGestures
+#### 1.3 deleteUserGestures
 
-### dollarRecognize
+### 2. dollarRecognize
 
 Recognize with built in gestures for dollar 1
 
-## release
+## Release
 
 ### 0.2.0
 
 1. Support dollar 1 recognize
+
+## License
+
+[Apache-2.0](https://opensource.org/licenses/Apache-2.0)
+
+Copyright (c) 2018-present, Tyler Hu
