@@ -33,3 +33,5 @@ console.log(dollarx.dollarRecognize(zigZag))
 
 const d1 = dollarx.createDollar()
 console.log(d1.recognize(envelop))
+d1.addGesture('test', envelop)
+console.log(d1.recognize(envelop))

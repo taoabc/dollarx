@@ -110,7 +110,6 @@ class Result {
 //
 // DollarRecognizer class constants
 //
-const NUM_UNISTROKES = 16
 const NUN_POINTS = 64
 const SQUARE_SIZE = 250.0
 const ORIGIN_POINT = new Point(0, 0)
@@ -198,8 +197,8 @@ class DollarRecognizer {
   }
 
   deleteUserGestures () {
-    this.unistrokes.length = NUM_UNISTROKES // clear any beyond the original set
-    return NUM_UNISTROKES
+    this.unistrokes = BUILTIN_UNISTROKES.slice() // clear any beyond the original set
+    return this.unistrokes.length
   }
 }
 //

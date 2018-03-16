@@ -1,6 +1,6 @@
 {
   "name": "dollarx",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "npm port for dollar gesture 1, N and P",
   "main": "index.js",
   "scripts": {
