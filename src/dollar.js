@@ -67,37 +67,45 @@
 //
 // Point class
 //
-function Point (x, y) { // constructor
-  this.x = x
-  this.y = y
+class Point {
+  constructor (x, y) {
+    this.x = x
+    this.y = y
+  }
 }
 //
 // Rectangle class
 //
-function Rectangle (x, y, width, height) { // constructor
-  this.x = x
-  this.y = y
-  this.width = width
-  this.height = height
+class Rectangle {
+  constructor (x, y, width, height) { // constructor
+    this.x = x
+    this.y = y
+    this.width = width
+    this.height = height
+  }
 }
 //
 // Unistroke class: a unistroke template
 //
-function Unistroke (name, points) { // constructor
-  this.name = name
-  this.points = resample(points, NUN_POINTS)
-  const radians = indicativeAngle(this.points)
-  this.points = rotateBy(this.points, -radians)
-  this.points = scaleTo(this.points, SQUARE_SIZE)
-  this.points = translateTo(this.points, ORIGIN_POINT)
-  this.vector = vectorize(this.points) // for Protractor
+class Unistroke {
+  constructor (name, points) { // constructor
+    this.name = name
+    this.points = resample(points, NUN_POINTS)
+    const radians = indicativeAngle(this.points)
+    this.points = rotateBy(this.points, -radians)
+    this.points = scaleTo(this.points, SQUARE_SIZE)
+    this.points = translateTo(this.points, ORIGIN_POINT)
+    this.vector = vectorize(this.points) // for Protractor
+  }
 }
 //
 // Result class
 //
-function Result (name, score) { // constructor
-  this.name = name
-  this.score = score
+class Result {
+  constructor (name, score) { // constructor
+    this.name = name
+    this.score = score
+  }
 }
 //
 // DollarRecognizer class constants
@@ -127,20 +135,28 @@ const BUILTIN_UNISTROKES = [
   new Unistroke('left-curly-brace', [new Point(150, 116), new Point(147, 117), new Point(145, 116), new Point(142, 116), new Point(139, 117), new Point(136, 117), new Point(133, 118), new Point(129, 121), new Point(126, 122), new Point(123, 123), new Point(120, 125), new Point(118, 127), new Point(115, 128), new Point(113, 129), new Point(112, 131), new Point(113, 134), new Point(115, 134), new Point(117, 135), new Point(120, 135), new Point(123, 137), new Point(126, 138), new Point(129, 140), new Point(135, 143), new Point(137, 144), new Point(139, 147), new Point(141, 149), new Point(140, 152), new Point(139, 155), new Point(134, 159), new Point(131, 161), new Point(124, 166), new Point(121, 166), new Point(117, 166), new Point(114, 167), new Point(112, 166), new Point(114, 164), new Point(116, 163), new Point(118, 163), new Point(120, 162), new Point(122, 163), new Point(125, 164), new Point(127, 165), new Point(129, 166), new Point(130, 168), new Point(129, 171), new Point(127, 175), new Point(125, 179), new Point(123, 184), new Point(121, 190), new Point(120, 194), new Point(119, 199), new Point(120, 202), new Point(123, 207), new Point(127, 211), new Point(133, 215), new Point(142, 219), new Point(148, 220), new Point(151, 221)]),
   new Unistroke('right-curly-brace', [new Point(117, 132), new Point(115, 132), new Point(115, 129), new Point(117, 129), new Point(119, 128), new Point(122, 127), new Point(125, 127), new Point(127, 127), new Point(130, 127), new Point(133, 129), new Point(136, 129), new Point(138, 130), new Point(140, 131), new Point(143, 134), new Point(144, 136), new Point(145, 139), new Point(145, 142), new Point(145, 145), new Point(145, 147), new Point(145, 149), new Point(144, 152), new Point(142, 157), new Point(141, 160), new Point(139, 163), new Point(137, 166), new Point(135, 167), new Point(133, 169), new Point(131, 172), new Point(128, 173), new Point(126, 176), new Point(125, 178), new Point(125, 180), new Point(125, 182), new Point(126, 184), new Point(128, 187), new Point(130, 187), new Point(132, 188), new Point(135, 189), new Point(140, 189), new Point(145, 189), new Point(150, 187), new Point(155, 186), new Point(157, 185), new Point(159, 184), new Point(156, 185), new Point(154, 185), new Point(149, 185), new Point(145, 187), new Point(141, 188), new Point(136, 191), new Point(134, 191), new Point(131, 192), new Point(129, 193), new Point(129, 195), new Point(129, 197), new Point(131, 200), new Point(133, 202), new Point(136, 206), new Point(139, 211), new Point(142, 215), new Point(145, 220), new Point(147, 225), new Point(148, 231), new Point(147, 239), new Point(144, 244), new Point(139, 248), new Point(134, 250), new Point(126, 253), new Point(119, 253), new Point(115, 253)]),
   new Unistroke('star', [new Point(75, 250), new Point(75, 247), new Point(77, 244), new Point(78, 242), new Point(79, 239), new Point(80, 237), new Point(82, 234), new Point(82, 232), new Point(84, 229), new Point(85, 225), new Point(87, 222), new Point(88, 219), new Point(89, 216), new Point(91, 212), new Point(92, 208), new Point(94, 204), new Point(95, 201), new Point(96, 196), new Point(97, 194), new Point(98, 191), new Point(100, 185), new Point(102, 178), new Point(104, 173), new Point(104, 171), new Point(105, 164), new Point(106, 158), new Point(107, 156), new Point(107, 152), new Point(108, 145), new Point(109, 141), new Point(110, 139), new Point(112, 133), new Point(113, 131), new Point(116, 127), new Point(117, 125), new Point(119, 122), new Point(121, 121), new Point(123, 120), new Point(125, 122), new Point(125, 125), new Point(127, 130), new Point(128, 133), new Point(131, 143), new Point(136, 153), new Point(140, 163), new Point(144, 172), new Point(145, 175), new Point(151, 189), new Point(156, 201), new Point(161, 213), new Point(166, 225), new Point(169, 233), new Point(171, 236), new Point(174, 243), new Point(177, 247), new Point(178, 249), new Point(179, 251), new Point(180, 253), new Point(180, 255), new Point(179, 257), new Point(177, 257), new Point(174, 255), new Point(169, 250), new Point(164, 247), new Point(160, 245), new Point(149, 238), new Point(138, 230), new Point(127, 221), new Point(124, 220), new Point(112, 212), new Point(110, 210), new Point(96, 201), new Point(84, 195), new Point(74, 190), new Point(64, 182), new Point(55, 175), new Point(51, 172), new Point(49, 170), new Point(51, 169), new Point(56, 169), new Point(66, 169), new Point(78, 168), new Point(92, 166), new Point(107, 164), new Point(123, 161), new Point(140, 162), new Point(156, 162), new Point(171, 160), new Point(173, 160), new Point(186, 160), new Point(195, 160), new Point(198, 161), new Point(203, 163), new Point(208, 163), new Point(206, 164), new Point(200, 167), new Point(187, 172), new Point(174, 179), new Point(172, 181), new Point(153, 192), new Point(137, 201), new Point(123, 211), new Point(112, 220), new Point(99, 229), new Point(90, 237), new Point(80, 244), new Point(73, 250), new Point(69, 254), new Point(69, 252)]),
-  new Unistroke('pigtail', [new Point(81, 219), new Point(84, 218), new Point(86, 220), new Point(88, 220), new Point(90, 220), new Point(92, 219), new Point(95, 220), new Point(97, 219), new Point(99, 220), new Point(102, 218), new Point(105, 217), new Point(107, 216), new Point(110, 216), new Point(113, 214), new Point(116, 212), new Point(118, 210), new Point(121, 208), new Point(124, 205), new Point(126, 202), new Point(129, 199), new Point(132, 196), new Point(136, 191), new Point(139, 187), new Point(142, 182), new Point(144, 179), new Point(146, 174), new Point(148, 170), new Point(149, 168), new Point(151, 162), new Point(152, 160), new Point(152, 157), new Point(152, 155), new Point(152, 151), new Point(152, 149), new Point(152, 146), new Point(149, 142), new Point(148, 139), new Point(145, 137), new Point(141, 135), new Point(139, 135), new Point(134, 136), new Point(130, 140), new Point(128, 142), new Point(126, 145), new Point(122, 150), new Point(119, 158), new Point(117, 163), new Point(115, 170), new Point(114, 175), new Point(117, 184), new Point(120, 190), new Point(125, 199), new Point(129, 203), new Point(133, 208), new Point(138, 213), new Point(145, 215), new Point(155, 218), new Point(164, 219), new Point(166, 219), new Point(177, 219), new Point(182, 218), new Point(192, 216), new Point(196, 213), new Point(199, 212), new Point(201, 211)])
+  new Unistroke('pigtail', [new Point(81, 219), new Point(84, 218), new Point(86, 220), new Point(88, 220), new Point(90, 220), new Point(92, 219), new Point(95, 220), new Point(97, 219), new Point(99, 220), new Point(102, 218), new Point(105, 217), new Point(107, 216), new Point(110, 216), new Point(113, 214), new Point(116, 212), new Point(118, 210), new Point(121, 208), new Point(124, 205), new Point(126, 202), new Point(129, 199), new Point(132, 196), new Point(136, 191), new Point(139, 187), new Point(142, 182), new Point(144, 179), new Point(146, 174), new Point(148, 170), new Point(149, 168), new Point(151, 162), new Point(152, 160), new Point(152, 157), new Point(152, 155), new Point(152, 151), new Point(152, 149), new Point(152, 146), new Point(149, 142), new Point(148, 139), new Point(145, 137), new Point(141, 135), new Point(139, 135), new Point(134, 136), new Point(130, 140), new Point(128, 142), new Point(126, 145), new Point(122, 150), new Point(119, 158), new Point(117, 163), new Point(115, 170), new Point(114, 175), new Point(117, 184), new Point(120, 190), new Point(125, 199), new Point(129, 203), new Point(133, 208), new Point(138, 213), new Point(145, 215), new Point(155, 218), new Point(164, 219), new Point(166, 219), new Point(177, 219), new Point(182, 218), new Point(192, 216), new Point(196, 213), new Point(199, 212), new Point(201, 211)]),
+  new Unistroke('envelop', [new Point(87, 108), new Point(87, 115), new Point(88, 123), new Point(88, 131), new Point(88, 139), new Point(88, 146), new Point(88, 153), new Point(88, 161), new Point(88, 169), new Point(88, 177), new Point(88, 185), new Point(88, 193), new Point(88, 201), new Point(88, 209), new Point(88, 217), new Point(88, 225), new Point(88, 233), new Point(88, 241), new Point(88, 249), new Point(88, 257), new Point(88, 262), new Point(88, 263), new Point(95, 264), new Point(103, 264), new Point(111, 264), new Point(119, 264), new Point(127, 264), new Point(135, 264), new Point(143, 264), new Point(151, 263), new Point(159, 263), new Point(167, 263), new Point(176, 263), new Point(184, 262), new Point(192, 261), new Point(200, 260), new Point(208, 259), new Point(216, 259), new Point(224, 258), new Point(232, 258), new Point(240, 258), new Point(250, 258), new Point(260, 258), new Point(272, 258), new Point(285, 258), new Point(295, 257), new Point(305, 257), new Point(312, 258), new Point(312, 250), new Point(312, 242), new Point(312, 232), new Point(312, 225), new Point(312, 214), new Point(312, 207), new Point(312, 199), new Point(312, 191), new Point(312, 183), new Point(312, 175), new Point(312, 167), new Point(312, 159), new Point(312, 151), new Point(312, 143), new Point(312, 135), new Point(312, 127), new Point(312, 119), new Point(312, 111), new Point(312, 103), new Point(307, 100), new Point(299, 99), new Point(291, 99), new Point(282, 99), new Point(274, 99), new Point(266, 99), new Point(258, 99), new Point(250, 99), new Point(242, 99), new Point(234, 99), new Point(226, 99), new Point(218, 100), new Point(210, 101), new Point(202, 101), new Point(193, 101), new Point(185, 101), new Point(177, 101), new Point(169, 101), new Point(161, 101), new Point(153, 101), new Point(145, 102), new Point(137, 102), new Point(129, 103), new Point(121, 104), new Point(113, 104), new Point(105, 104), new Point(97, 105), new Point(89, 105), new Point(95, 109), new Point(102, 114), new Point(108, 118), new Point(116, 122), new Point(123, 126), new Point(130, 130), new Point(137, 133), new Point(145, 136), new Point(151, 140), new Point(158, 144), new Point(165, 149), new Point(170, 154), new Point(176, 160), new Point(182, 165), new Point(188, 170), new Point(195, 174), new Point(202, 171), new Point(209, 167), new Point(215, 162), new Point(222, 158), new Point(230, 155), new Point(237, 152), new Point(244, 148), new Point(251, 143), new Point(258, 140), new Point(265, 137), new Point(272, 132), new Point(279, 128), new Point(286, 124), new Point(292, 119), new Point(298, 114), new Point(303, 109), new Point(308, 104)])
 ]
 //
 // DollarRecognizer class
 //
-function DollarRecognizer () { // constructor
-  //
-  // one built-in unistroke per gesture type
-  //
-  this.unistrokes = BUILTIN_UNISTROKES.slice()
+class DollarRecognizer {
+  constructor () { // constructor
+    //
+    // one built-in unistroke per gesture type
+    //
+    this.unistrokes = BUILTIN_UNISTROKES.slice()
+  }
   //
   // The $1 Gesture Recognizer API begins here -- 3 methods: recognize(), addGesture(), and deleteUserGestures()
   //
-  this.recognize = function (points, useProtractor) {
+  /**
+   *
+   * @param {Array.<{x:number,y:number}>} points
+   * @param {boolean} useProtractor
+   */
+  recognize (points, useProtractor) {
     points = resample(points, NUN_POINTS)
     const radians = indicativeAngle(points)
     points = rotateBy(points, -radians)
@@ -149,22 +165,30 @@ function DollarRecognizer () { // constructor
     const vector = vectorize(points) // for Protractor
 
     let b = +Infinity
-    let u = -1
-    for (let i = 0; i < this.unistrokes.length; i++) { // for each unistroke
+    let matched
+    for (const stroke of this.unistrokes) { // for each unistroke
       let d
       if (useProtractor) { // for Protractor
-        d = optimalCosineDistance(this.unistrokes[i].vector, vector)
+        d = optimalCosineDistance(stroke.vector, vector)
       } else { // Golden Section Search (original $1)
-        d = distanceAtBestAngle(points, this.unistrokes[i], -ANGLE_RANGE, +ANGLE_RANGE, ANGLE_PRECISION)
+        d = distanceAtBestAngle(points, stroke, -ANGLE_RANGE, +ANGLE_RANGE, ANGLE_PRECISION)
       }
       if (d < b) {
         b = d // best (least) distance
-        u = i // unistroke
+        matched = stroke // unistroke
       }
     }
-    return (u === -1) ? new Result('No match.', 0.0) : new Result(this.unistrokes[u].name, useProtractor ? 1.0 / b : 1.0 - b / HALF_DIAGONAL)
+    for (let i = 0; i < this.unistrokes.length; i++) { // for each unistroke
+    }
+    return !matched ? new Result('No match.', 0.0) : new Result(matched.name, useProtractor ? 1.0 / b : 1.0 - b / HALF_DIAGONAL)
   }
-  this.addGesture = function (name, points) {
+
+  /**
+   *
+   * @param {string} name
+   * @param {Array.<{x:number,y:number}>} points
+   */
+  addGesture (name, points) {
     this.unistrokes.push(new Unistroke(name, points)) // append new unistroke
     let num = 0
     for (let i = 0; i < this.unistrokes.length; i++) {
@@ -172,7 +196,8 @@ function DollarRecognizer () { // constructor
     }
     return num
   }
-  this.deleteUserGestures = function () {
+
+  deleteUserGestures () {
     this.unistrokes.length = NUM_UNISTROKES // clear any beyond the original set
     return NUM_UNISTROKES
   }
@@ -181,15 +206,15 @@ function DollarRecognizer () { // constructor
 // Private helper functions from this point down
 //
 function resample (points, n) {
-  let I = pathLength(points) / (n - 1) // interval length
+  const I = pathLength(points) / (n - 1) // interval length
   let D = 0.0
-  let newpoints = new Array(points[0])
+  const newpoints = new Array(points[0])
   for (let i = 1; i < points.length; i++) {
-    let d = distance(points[i - 1], points[i])
+    const d = distance(points[i - 1], points[i])
     if ((D + d) >= I) {
-      let qx = points[i - 1].x + ((I - D) / d) * (points[i].x - points[i - 1].x)
-      let qy = points[i - 1].y + ((I - D) / d) * (points[i].y - points[i - 1].y)
-      let q = new Point(qx, qy)
+      const qx = points[i - 1].x + ((I - D) / d) * (points[i].x - points[i - 1].x)
+      const qy = points[i - 1].y + ((I - D) / d) * (points[i].y - points[i - 1].y)
+      const q = new Point(qx, qy)
       newpoints[newpoints.length] = q // append new point 'q'
       points.splice(i, 0, q) // insert 'q' at position i in points s.t. 'q' will be the next i
       D = 0.0
@@ -202,40 +227,40 @@ function resample (points, n) {
 }
 
 function indicativeAngle (points) {
-  let c = centroid(points)
+  const c = centroid(points)
   return Math.atan2(c.y - points[0].y, c.x - points[0].x)
 }
 
 function rotateBy (points, radians) { // rotates points around centroid
-  let c = centroid(points)
-  let cos = Math.cos(radians)
-  let sin = Math.sin(radians)
-  let newpoints = []
+  const c = centroid(points)
+  const cos = Math.cos(radians)
+  const sin = Math.sin(radians)
+  const newpoints = []
   for (let i = 0; i < points.length; i++) {
-    let qx = (points[i].x - c.x) * cos - (points[i].y - c.y) * sin + c.x
-    let qy = (points[i].x - c.x) * sin + (points[i].y - c.y) * cos + c.y
+    const qx = (points[i].x - c.x) * cos - (points[i].y - c.y) * sin + c.x
+    const qy = (points[i].x - c.x) * sin + (points[i].y - c.y) * cos + c.y
     newpoints[newpoints.length] = new Point(qx, qy)
   }
   return newpoints
 }
 
 function scaleTo (points, size) { // non-uniform scale; assumes 2D gestures (i.e., no lines)
-  let B = boundingBox(points)
-  let newpoints = []
+  const B = boundingBox(points)
+  const newpoints = []
   for (let i = 0; i < points.length; i++) {
-    let qx = points[i].x * (size / B.width)
-    let qy = points[i].y * (size / B.height)
+    const qx = points[i].x * (size / B.width)
+    const qy = points[i].y * (size / B.height)
     newpoints[newpoints.length] = new Point(qx, qy)
   }
   return newpoints
 }
 
 function translateTo (points, pt) { // translates points' centroid
-  let c = centroid(points)
-  let newpoints = []
+  const c = centroid(points)
+  const newpoints = []
   for (let i = 0; i < points.length; i++) {
-    let qx = points[i].x + pt.x - c.x
-    let qy = points[i].y + pt.y - c.y
+    const qx = points[i].x + pt.x - c.x
+    const qy = points[i].y + pt.y - c.y
     newpoints[newpoints.length] = new Point(qx, qy)
   }
   return newpoints
@@ -243,13 +268,13 @@ function translateTo (points, pt) { // translates points' centroid
 
 function vectorize (points) { // for Protractor
   let sum = 0.0
-  let vector = []
+  const vector = []
   for (let i = 0; i < points.length; i++) {
     vector[vector.length] = points[i].x
     vector[vector.length] = points[i].y
     sum += points[i].x * points[i].x + points[i].y * points[i].y
   }
-  let magnitude = Math.sqrt(sum)
+  const magnitude = Math.sqrt(sum)
   for (let i = 0; i < vector.length; i++) { vector[i] /= magnitude }
   return vector
 }
@@ -261,7 +286,7 @@ function optimalCosineDistance (v1, v2) { // for Protractor
     a += v1[i] * v2[i] + v1[i + 1] * v2[i + 1]
     b += v1[i] * v2[i + 1] - v1[i + 1] * v2[i]
   }
-  let angle = Math.atan(b / a)
+  const angle = Math.atan(b / a)
   return Math.acos(a * Math.cos(angle) + b * Math.sin(angle))
 }
 
@@ -289,7 +314,7 @@ function distanceAtBestAngle (points, T, a, b, threshold) {
 }
 
 function distanceAtAngle (points, T, radians) {
-  let newpoints = rotateBy(points, radians)
+  const newpoints = rotateBy(points, radians)
   return pathDistance(newpoints, T.points)
 }
 
@@ -334,8 +359,8 @@ function pathLength (points) {
 }
 
 function distance (p1, p2) {
-  let dx = p2.x - p1.x
-  let dy = p2.y - p1.y
+  const dx = p2.x - p1.x
+  const dy = p2.y - p1.y
   return Math.sqrt(dx * dx + dy * dy)
 }
 

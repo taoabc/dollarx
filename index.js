@@ -1,7 +1,7 @@
 const { DollarRecognizer } = require('./src/dollar')
 
 function createDollar (withDefaults = true) {
-  console.log('createDollar')
+  return new DollarRecognizer()
 }
 
 // function createNDollar (withDefaults = true) {
