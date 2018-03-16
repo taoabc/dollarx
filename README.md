@@ -1,6 +1,6 @@
 # dollarx
 
-[![Build Status](https://travis-ci.org/taoabc/dollarx.svg?branch=master)](https://travis-ci.org/taoabc/dollarx)
+[![Build Status](https://travis-ci.org/taoabc/dollarx.svg?branch=production)](https://travis-ci.org/taoabc/dollarx)
 
 Npm port for dollar gesture 1, N and P, Offical site: [http://depts.washington.edu/madlab/proj/dollar/index.html](http://depts.washington.edu/madlab/proj/dollar/index.html)
 
